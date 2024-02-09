@@ -17,5 +17,5 @@ async def send_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                            parse_mode='MarkdownV2')
         except Exception as e:
             logger.error(f"Не удалось отправить сообщение в чат {chat_id}: {e}")
-    await update.message.reply_text(config.ui.messages.broadcastSuccess, parse_mode='MarkdownV2')
+    await update.message.reply_text(config.ui.messages.broadcastSuccess) 
     del context.user_data['awaiting_broadcast_message']

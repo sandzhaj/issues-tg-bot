@@ -50,7 +50,7 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if str(update.effective_chat.id) == str(config.targetChatId):
         return
 
-    if update.message.text == config.ui.buttons.broadcast:
+    if update.effective_message.text == config.ui.buttons.broadcast:
         logger.info(f'Пользователь {update.effective_user.id} запросил отправку broadcast сообщения')
         if update.effective_user.id in config.allowedBroadcastIds:
             context.user_data['awaiting_broadcast_message'] = True

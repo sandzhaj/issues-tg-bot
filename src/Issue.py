@@ -82,6 +82,10 @@ class Issue:
         if self.isDirectMsg:
             self.source = config.ui.messages.privateMessageSource
             self.createIssueReply += render(config.ui.messages.createIssueReplyFromDirectAppend, issue=self)
+        if self.author:
+            self.author = self.escape_md_v2(self.author)
+        if self.source:
+            self.source = self.escape_md_v2(self.source)
         self.issueMsg = render(config.ui.issue, issue=self)
         self.resolveCommonReply = render(config.ui.messages.resolveCommonReply, issue=self)
         self.resolveReply = render(config.ui.messages.resolveReply, issue=self)
@@ -90,6 +94,11 @@ class Issue:
     def to_dict(self):
         """Сериализует объект в словарь."""
         return asdict(self)
+
+    @staticmethod
+    def escape_md_v2(text):
+        escape_chars = '_[]()~`>#+-=|{}.!'
+        return ''.join(f'\\{char}' if char in escape_chars else char for char in text)
 
     @staticmethod
     def from_dict(data):

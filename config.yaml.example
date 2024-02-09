@@ -1,0 +1,46 @@
+targetChatId: "CHAT_ID"
+token: 'TOKEN'
+
+team:
+    - name: Александр
+      login: "@Alexandr"
+      id: 12345
+    - name: Андрей
+      login: "@Andrey"
+      id: 123456
+    - login: "@YourBot"
+
+ui:
+  buttons:
+    broadcast: "Отправить сообщение для всех групп"
+    issueAssign: "Взять в работу"
+    issueClose: "Закрыть задачу"
+    issueCommon: "Проблемы с инфраструктурой"
+  issue: |
+      *Новое обращение*
+      *ID*: {{ issue.id }}
+      *Автор*: @{{ issue.author }}
+      *Группа*: {{ issue.source }}
+      *Сообщение*:
+      {{ issue.message }}
+  messages:
+    welcome: |
+      Привет! В вашу группу был добавлен бот {{ bot_name }}.
+      Чтобы обратиться к команде DevOps, напишите сообщение с упоминанием бота
+      и описанием проблемы. Вы также можете упомянуть любого из участников команды DevOps,
+      или написать боту в личные сообщения, обращение будет создано в любом случае и ей займется первый
+      освободившийся сотрудник.
+      Список участников команды DevOps: {{ ', '.join(mentions) }}
+    broadcastSuccess: "Сообщение отправлено во все группы."
+    createIssueReply: "@{{ issue.author }} Создано обращение №{{ issue.id }} Команде DevOps."
+    createIssueReplyFromDirectAppend: " Пожалуйста, ожидайте. Новое сообщение создаст новое обращение."
+    assignIssueReply: "@{{ issue.author}} Заявка №{{ issue.id }}. Сотрудник @{{ user }} взял в работу"
+    assignIssueStatus: "{{ original_text }}\n*Исполнитель*: @{{ user }}"
+    resolveCommonReply: |
+        @{{ issue.author }} Видим, что наблюдаются проблемы с инфраструктурой.
+        Пожалуйста, зарегистрируйте обращение письмом на dos-support@vtb.ru
+        К письму желательно приложить ссылки на проблему. Обращение закрыто
+    resolveCommonStatus: "{{ original_text }}\n*Обращение закрыто пользователем @{{ user }}*"
+    resolveReply: "@{{ issue.author }} Заявка №{{ issue.id }} закрыта. Спасибо за обращение."
+    resolveStatus: "{{ original_text }}\n*Обращение закрыто пользователем @{{ user }}*"
+    privateMessageSource: "Написал боту в личные сообщения"

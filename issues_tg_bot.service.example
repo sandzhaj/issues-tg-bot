@@ -1,0 +1,16 @@
+[Unit]
+Description=IssuesTgBot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3.11 /data/Projects/scripts/issues-tg-bot/main.py
+WorkingDirectory=/data/Projects/scripts/issues-tg-bot
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
